@@ -1,0 +1,506 @@
+/* ============================================
+   INPUT COMPONENT STYLES
+   ============================================ */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.input-required {
+  color: var(--error);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--pink-50);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.input-wrapper:focus-within {
+  background: var(--white);
+  border-color: var(--pink-500);
+  box-shadow: 0 0 0 3px rgba(255, 26, 110, 0.1);
+}
+
+.input-wrapper.error {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.input-wrapper.error:focus-within {
+  box-shadow: 0 0 0 3px rgba(255, 61, 61, 0.1);
+}
+
+.input-wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--gray-100);
+}
+
+.input-wrapper.success {
+  border-color: var(--success);
+}
+
+/* ── Icon Styling ── */
+
+.input-icon-left {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--gray-400);
+  pointer-events: none;
+  font-size: 18px;
+}
+
+.input-wrapper:focus-within .input-icon-left {
+  color: var(--pink-500);
+}
+
+.input-icon-right {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 18px;
+  transition: color var(--transition-fast);
+}
+
+.input-wrapper:focus-within .input-icon-right {
+  color: var(--gray-600);
+}
+
+.input-icon-right:hover {
+  color: var(--pink-500);
+}
+
+/* ── Text Input Field ── */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gray-900);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"] {
+  padding: 12px var(--space-4);
+  height: 52px;
+}
+
+input[type="text"].with-icon-left,
+input[type="email"].with-icon-left,
+input[type="password"].with-icon-left,
+input[type="number"].with-icon-left,
+input[type="tel"].with-icon-left,
+input[type="url"].with-icon-left,
+input[type="search"].with-icon-left,
+input[type="date"].with-icon-left,
+input[type="time"].with-icon-left {
+  padding-left: 48px;
+}
+
+input[type="text"].with-icon-right,
+input[type="email"].with-icon-right,
+input[type="password"].with-icon-right,
+input[type="number"].with-icon-right,
+input[type="tel"].with-icon-right,
+input[type="url"].with-icon-right,
+input[type="search"].with-icon-right,
+input[type="date"].with-icon-right,
+input[type="time"].with-icon-right {
+  padding-right: 48px;
+}
+
+::placeholder {
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* ── Input Sizes ── */
+
+.input-sm .input-wrapper {
+  border-radius: var(--radius-md);
+}
+
+.input-sm input,
+.input-sm textarea {
+  padding: 8px var(--space-3);
+  font-size: 14px;
+  height: 40px;
+}
+
+.input-lg .input-wrapper {
+  border-radius: var(--radius-xl);
+}
+
+.input-lg input,
+.input-lg textarea {
+  padding: 16px var(--space-5);
+  font-size: 17px;
+  height: 64px;
+}
+
+/* ── Textarea ── */
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+}
+
+.input-wrapper textarea {
+  padding: var(--space-4);
+}
+
+/* ── Select Field ── */
+
+select {
+  padding: 12px var(--space-4);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A8690' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* ── Checkbox & Radio ── */
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--space-2);
+  cursor: pointer;
+  accent-color: var(--pink-500);
+}
+
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.checkbox-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: var(--space-2);
+}
+
+.checkbox-label,
+.radio-label {
+  font-size: 14px;
+  color: var(--gray-700);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-item input[type="checkbox"]:focus,
+.radio-item input[type="radio"]:focus {
+  outline: 2px solid var(--pink-500);
+  outline-offset: 2px;
+}
+
+/* ── Helper Text & Validation ── */
+
+.input-helper {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: var(--space-1);
+}
+
+.input-error {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.input-error::before {
+  content: '!';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: var(--error);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.input-success {
+  font-size: 12px;
+  color: var(--success);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ── Disabled State ── */
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--gray-100);
+}
+
+/* ── Autofill Styling ── */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--pink-50) inset !important;
+  -webkit-text-fill-color: var(--gray-900) !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--gray-400) !important;
+}
+
+/* ── Search Input ── */
+
+.input-search {
+  position: relative;
+}
+
+.input-search input {
+  width: 100%;
+}
+
+.input-search .input-icon-right {
+  cursor: pointer;
+  color: var(--pink-500);
+}
+
+/* ── Range Input ── */
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--pink-100);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--pink-500);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 26, 110, 0.3);
+  transition: all var(--transition-fast);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--pink-500);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255, 26, 110, 0.3);
+  transition: all var(--transition-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 4px 12px rgba(255, 26, 110, 0.4);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 4px 12px rgba(255, 26, 110, 0.4);
+}
+
+/* ── Input with OTP ── */
+
+.input-otp {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.input-otp input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* ── File Input ── */
+
+.input-file {
+  position: relative;
+}
+
+.input-file-input {
+  display: none;
+}
+
+.input-file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-5);
+  background: var(--pink-50);
+  border: 2px dashed var(--pink-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.input-file-label:hover {
+  border-color: var(--pink-400);
+  background: var(--pink-100);
+}
+
+.input-file-label.active {
+  border-color: var(--pink-500);
+  background: var(--pink-100);
+  box-shadow: 0 0 0 3px rgba(255, 26, 110, 0.1);
+}
+
+.input-file-icon {
+  font-size: 24px;
+  color: var(--pink-500);
+}
+
+.input-file-text {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.input-file-main {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.input-file-sub {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+/* ── Form Group ── */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Floating Label ── */
+
+.input-floating {
+  position: relative;
+}
+
+.input-floating-input {
+  padding-top: 20px;
+}
+
+.input-floating-label {
+  position: absolute;
+  top: 12px;
+  left: var(--space-4);
+  font-size: 14px;
+  color: var(--gray-500);
+  transition: all var(--transition-fast);
+  pointer-events: none;
+}
+
+.input-floating-input:focus ~ .input-floating-label,
+.input-floating-input:not(:placeholder-shown) ~ .input-floating-label {
+  top: -10px;
+  font-size: 12px;
+  color: var(--pink-500);
+  background: white;
+  padding: 0 var(--space-1);
+  left: calc(var(--space-4) - var(--space-1));
+}

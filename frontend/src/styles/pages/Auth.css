@@ -1,0 +1,130 @@
+.auth-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 107, 157, 0.2), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(232, 0, 76, 0.12), transparent 24%),
+    linear-gradient(180deg, #fff9fb 0%, var(--color-bg) 100%);
+}
+
+.auth-card {
+  width: min(100%, 460px);
+  padding: 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(232, 0, 76, 0.14);
+  box-shadow: var(--shadow-lg);
+  animation: fadeInUp 400ms ease;
+}
+
+.auth-card.large {
+  width: min(100%, 760px);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-header h1 {
+  margin-bottom: 10px;
+}
+
+.auth-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.16);
+  color: var(--color-error);
+}
+
+.auth-form {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.auth-form .form-group {
+  margin: 0;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.auth-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forgot-link,
+.guest-link {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--color-text-hint);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(232, 0, 76, 0.1);
+}
+
+.auth-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(232, 0, 76, 0.08);
+  text-align: center;
+}
+
+.auth-footer .terms,
+.auth-footer p {
+  font-size: 0.86rem;
+}
+
+@media (max-width: 768px) {
+  .auth-card,
+  .auth-card.large {
+    padding: 24px;
+    border-radius: 26px;
+  }
+
+  .auth-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}

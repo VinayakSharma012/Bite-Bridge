@@ -1,0 +1,530 @@
+/* ============================================
+   BADGE/PILL COMPONENT STYLES
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+/* ── Size Variants ── */
+
+.badge-sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: 11px;
+}
+
+.badge-md {
+  padding: var(--space-2) var(--space-3);
+  font-size: 12px;
+}
+
+.badge-lg {
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+}
+
+/* ── Color Variants ── */
+
+/* Pink Badge */
+.badge-pink {
+  background: var(--pink-100);
+  color: var(--pink-700);
+  border: 1px solid var(--pink-200);
+}
+
+.badge-pink:hover {
+  background: var(--pink-200);
+  border-color: var(--pink-300);
+}
+
+/* Green Success Badge */
+.badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(0, 200, 151, 0.2);
+}
+
+.badge-success:hover {
+  background: rgba(0, 200, 151, 0.15);
+  border-color: var(--success);
+}
+
+/* Orange Warning Badge */
+.badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid rgba(255, 179, 0, 0.2);
+}
+
+.badge-warning:hover {
+  background: rgba(255, 179, 0, 0.15);
+  border-color: var(--warning);
+}
+
+/* Red Error Badge */
+.badge-error {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid rgba(255, 61, 61, 0.2);
+}
+
+.badge-error:hover {
+  background: rgba(255, 61, 61, 0.15);
+  border-color: var(--error);
+}
+
+/* Blue Info Badge */
+.badge-info {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 1px solid rgba(59, 158, 255, 0.2);
+}
+
+.badge-info:hover {
+  background: rgba(59, 158, 255, 0.15);
+  border-color: var(--info);
+}
+
+/* Gray Neutral Badge */
+.badge-gray {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+}
+
+.badge-gray:hover {
+  background: var(--gray-200);
+  border-color: var(--gray-300);
+}
+
+/* ── Outline Variants ── */
+
+.badge-outline-pink {
+  background: transparent;
+  color: var(--pink-700);
+  border: 1.5px solid var(--pink-300);
+}
+
+.badge-outline-pink:hover {
+  background: var(--pink-50);
+  border-color: var(--pink-500);
+}
+
+.badge-outline-success {
+  background: transparent;
+  color: var(--success);
+  border: 1.5px solid var(--success);
+}
+
+.badge-outline-success:hover {
+  background: var(--success-bg);
+  border-color: var(--success);
+}
+
+.badge-outline-warning {
+  background: transparent;
+  color: var(--warning);
+  border: 1.5px solid var(--warning);
+}
+
+.badge-outline-warning:hover {
+  background: var(--warning-bg);
+  border-color: var(--warning);
+}
+
+.badge-outline-error {
+  background: transparent;
+  color: var(--error);
+  border: 1.5px solid var(--error);
+}
+
+.badge-outline-error:hover {
+  background: var(--error-bg);
+  border-color: var(--error);
+}
+
+/* ── Solid Variants ── */
+
+.badge-solid-pink {
+  background: var(--pink-500);
+  color: white;
+  border: none;
+}
+
+.badge-solid-pink:hover {
+  background: var(--pink-600);
+  box-shadow: 0 4px 12px rgba(255, 26, 110, 0.3);
+}
+
+.badge-solid-success {
+  background: var(--success);
+  color: white;
+  border: none;
+}
+
+.badge-solid-success:hover {
+  background: #00a872;
+  box-shadow: 0 4px 12px rgba(0, 200, 151, 0.3);
+}
+
+.badge-solid-warning {
+  background: var(--warning);
+  color: white;
+  border: none;
+}
+
+.badge-solid-warning:hover {
+  background: #ff9100;
+  box-shadow: 0 4px 12px rgba(255, 179, 0, 0.3);
+}
+
+.badge-solid-error {
+  background: var(--error);
+  color: white;
+  border: none;
+}
+
+.badge-solid-error:hover {
+  background: #ff1a1a;
+  box-shadow: 0 4px 12px rgba(255, 61, 61, 0.3);
+}
+
+.badge-solid-gray {
+  background: var(--gray-700);
+  color: white;
+  border: none;
+}
+
+.badge-solid-gray:hover {
+  background: var(--gray-800);
+  box-shadow: 0 4px 12px rgba(92, 77, 84, 0.3);
+}
+
+/* ── Dot Variants ── */
+
+.badge-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.badge-dot::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Icon Variants ── */
+
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.badge-icon svg,
+.badge-icon i {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Status Badges (for Orders, Restaurants, etc.) ── */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.status-confirmed {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.status-preparing {
+  background: linear-gradient(135deg, rgba(255, 179, 0, 0.1) 0%, rgba(255, 179, 0, 0.05) 100%);
+  color: var(--warning);
+}
+
+.status-shipped {
+  background: linear-gradient(135deg, rgba(59, 158, 255, 0.1) 0%, rgba(59, 158, 255, 0.05) 100%);
+  color: var(--info);
+}
+
+.status-delivered {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.status-cancelled {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.status-returned {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+/* ── Cuisine/Category Badges ── */
+
+.cuisine-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--pink-50);
+  color: var(--pink-700);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--pink-100);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.cuisine-badge:hover {
+  background: var(--pink-100);
+  border-color: var(--pink-300);
+  color: var(--pink-800);
+}
+
+.cuisine-badge.active {
+  background: var(--pink-500);
+  color: white;
+  border-color: var(--pink-600);
+}
+
+.cuisine-badge-icon {
+  font-size: 14px;
+}
+
+/* ── Offer/Discount Badges ── */
+
+.offer-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: 60px;
+  padding: var(--space-2) var(--space-3);
+  background: linear-gradient(135deg, var(--pink-500) 0%, var(--pink-600) 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(255, 26, 110, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.offer-badge-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Notification Badge ── */
+
+.notification-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 var(--space-1);
+  background: var(--error);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.notification-badge.success {
+  background: var(--success);
+}
+
+.notification-badge.warning {
+  background: var(--warning);
+}
+
+.notification-badge.info {
+  background: var(--info);
+}
+
+/* ── Tag/Label Badges ── */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.tag:hover {
+  background: var(--gray-200);
+  border-color: var(--gray-300);
+}
+
+.tag.active {
+  background: var(--pink-500);
+  color: white;
+  border-color: var(--pink-600);
+}
+
+.tag-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-1);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.tag-close:hover {
+  opacity: 1;
+}
+
+/* ── Accessibility Badge ── */
+
+.accessibility-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--pink-100);
+  color: var(--pink-700);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Premium Badge ── */
+
+.premium-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: linear-gradient(135deg, var(--pink-400) 0%, var(--pink-500) 50%, var(--pink-600) 100%);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 26, 110, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-badge::before {
+  content: '★';
+  margin-right: var(--space-1);
+  font-size: 14px;
+}
+
+.premium-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ── Verification Badge ── */
+
+.verification-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--success);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.verification-badge::before {
+  content: '✓';
+}
+
+/* ── Responsive Badge ── */
+
+@media (max-width: 640px) {
+  .badge-lg {
+    padding: var(--space-2) var(--space-3);
+    font-size: 12px;
+  }
+
+  .status-badge {
+    font-size: 11px;
+    padding: var(--space-1) var(--space-2);
+  }
+}

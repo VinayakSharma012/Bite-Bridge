@@ -1,0 +1,161 @@
+/* Button Component Styles */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── Sizes ── */
+.btn-sm {
+  height: 32px;
+  padding: 0 var(--space-4);
+  font-size: 13px;
+}
+
+.btn-md {
+  height: 42px;
+  padding: 0 var(--space-5);
+  font-size: 14px;
+}
+
+.btn-lg {
+  height: 52px;
+  padding: 0 var(--space-6);
+  font-size: 16px;
+}
+
+.btn-xl {
+  height: 64px;
+  padding: 0 var(--space-8);
+  font-size: 18px;
+}
+
+/* ── Variants ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink-400) 0%, var(--pink-600) 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(255, 26, 110, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 26, 110, 0.45);
+  background: linear-gradient(135deg, var(--pink-500) 0%, var(--pink-700) 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 26, 110, 0.3);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--pink-500);
+  border: 1.5px solid var(--pink-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--pink-50);
+  border-color: var(--pink-400);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+  background: var(--pink-100);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--pink-500);
+  border: none;
+}
+
+.btn-ghost:hover {
+  background: var(--pink-50);
+}
+
+.btn-ghost:active {
+  background: var(--pink-100);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF3D3D 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(255, 61, 61, 0.35);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 61, 61, 0.45);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+/* ── States ── */
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn.loading {
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: var(--space-2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Full Width ── */
+.btn-full {
+  width: 100%;
+  display: flex;
+}
+
+/* ── Icon Button ── */
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon.btn-primary {
+  background: var(--pink-500);
+  color: white;
+}
+
+.btn-icon.btn-secondary {
+  background: var(--pink-50);
+  color: var(--pink-500);
+  border: 1px solid var(--pink-200);
+}

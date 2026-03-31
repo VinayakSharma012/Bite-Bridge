@@ -1,0 +1,523 @@
+.order-tracking-page {
+  min-height: 100vh;
+}
+
+.tracking-page-shell {
+  display: grid;
+  gap: 24px;
+}
+
+.tracking-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.tracking-kicker,
+.tracking-section-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(232, 0, 76, 0.12);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tracking-hero h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(2.15rem, 4vw, 3rem);
+}
+
+.tracking-hero p {
+  max-width: 56ch;
+}
+
+.tracking-eta-card,
+.tracking-map-card,
+.tracking-driver-card,
+.tracking-timeline-card,
+.tracking-order-card {
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(232, 0, 76, 0.12);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.tracking-eta-card {
+  min-width: 220px;
+  padding: 20px 22px;
+}
+
+.tracking-eta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tracking-eta-label svg {
+  color: var(--color-primary);
+}
+
+.tracking-eta-card strong {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--color-primary);
+}
+
+.tracking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.tracking-main-column,
+.tracking-sidebar {
+  display: grid;
+  gap: 20px;
+}
+
+.tracking-map-card {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 245, 247, 0.86), rgba(255, 221, 232, 0.78)),
+    #FFFFFF;
+}
+
+.tracking-map-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232, 0, 76, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 0, 76, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.96), transparent 100%);
+}
+
+.tracking-route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tracking-route path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 8 14;
+  opacity: 0.7;
+}
+
+.tracking-restaurant-badge {
+  position: absolute;
+  left: 38px;
+  bottom: 58px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.tracking-rider-pin {
+  position: absolute;
+  left: 46%;
+  top: 42%;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 32px rgba(232, 0, 76, 0.18);
+  font-size: 1.5rem;
+}
+
+.tracking-destination-pin {
+  position: absolute;
+  right: 64px;
+  top: 84px;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+}
+
+.tracking-destination-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: trackingPulse 1.8s ease-out infinite;
+}
+
+.tracking-destination-core {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-primary-gradient);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+}
+
+.tracking-map-overlay {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  width: min(320px, calc(100% - 52px));
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(232, 0, 76, 0.1);
+  box-shadow: var(--shadow-md);
+}
+
+.tracking-map-overlay strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
+}
+
+.tracking-overlay-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tracking-map-overlay p {
+  margin-top: 10px;
+  font-size: 0.92rem;
+}
+
+.tracking-driver-card,
+.tracking-timeline-card,
+.tracking-order-card {
+  padding: 26px;
+}
+
+.tracking-driver-card {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.tracking-driver-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
+  object-fit: cover;
+  box-shadow: 0 16px 32px rgba(232, 0, 76, 0.14);
+}
+
+.tracking-driver-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tracking-driver-top h2 {
+  margin-top: 12px;
+  font-size: 1.4rem;
+}
+
+.tracking-driver-copy p {
+  margin-top: 10px;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.tracking-driver-copy small {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-text-secondary);
+}
+
+.tracking-driver-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 240, 243, 0.92);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.tracking-driver-actions {
+  margin-top: 18px;
+}
+
+.tracking-call-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 16px 28px rgba(16, 185, 129, 0.22);
+}
+
+.tracking-sidebar-header h2 {
+  margin-top: 14px;
+  font-size: 1.45rem;
+}
+
+.tracking-timeline {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.tracking-line-base,
+.tracking-line-fill {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 4px;
+  border-radius: var(--radius-pill);
+}
+
+.tracking-line-base {
+  height: 100%;
+  background: rgba(156, 163, 175, 0.24);
+}
+
+.tracking-line-fill {
+  background: var(--color-primary-gradient);
+}
+
+.tracking-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  z-index: 1;
+}
+
+.tracking-stage-marker {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(156, 163, 175, 0.14);
+  color: var(--color-text-hint);
+  font-weight: 700;
+}
+
+.tracking-stage-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tracking-stage.complete .tracking-stage-marker {
+  background: var(--color-primary-gradient);
+  color: #FFFFFF;
+}
+
+.tracking-stage.active .tracking-stage-marker {
+  background: #FFFFFF;
+  color: var(--color-primary);
+  box-shadow: 0 0 0 7px rgba(232, 0, 76, 0.12);
+}
+
+.tracking-stage.active .tracking-stage-marker::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(232, 0, 76, 0.22);
+  animation: trackingPulse 1.8s ease-out infinite;
+}
+
+.tracking-stage-copy strong {
+  display: block;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+.tracking-stage-copy p {
+  margin-top: 6px;
+  font-size: 0.88rem;
+}
+
+.tracking-order-items {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.tracking-order-item,
+.tracking-breakdown-row,
+.tracking-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.tracking-order-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(232, 0, 76, 0.08);
+}
+
+.tracking-order-item strong,
+.tracking-breakdown-row span:last-child {
+  color: var(--color-text-primary);
+}
+
+.tracking-order-item p {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  color: var(--color-text-hint);
+}
+
+.tracking-order-breakdown {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(232, 0, 76, 0.1);
+}
+
+.tracking-breakdown-row {
+  padding: 9px 0;
+  color: var(--color-text-secondary);
+}
+
+.tracking-total-row {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(232, 0, 76, 0.1);
+}
+
+.tracking-total-row span {
+  color: var(--color-text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+.tracking-total-row strong {
+  font-size: 1.7rem;
+  color: var(--color-primary);
+}
+
+.tracking-meta-block {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(232, 0, 76, 0.1);
+  display: grid;
+  gap: 14px;
+}
+
+.tracking-meta-item span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tracking-meta-item strong {
+  color: var(--color-text-primary);
+}
+
+.tracking-meta-item p {
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.tracking-rate-action {
+  margin-top: 22px;
+}
+
+@keyframes trackingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 0, 76, 0.28);
+  }
+
+  70% {
+    box-shadow: 0 0 0 18px rgba(232, 0, 76, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 0, 76, 0);
+  }
+}
+
+@media (max-width: 1120px) {
+  .tracking-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .tracking-hero,
+  .tracking-driver-card {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tracking-eta-card,
+  .tracking-map-card,
+  .tracking-driver-card,
+  .tracking-timeline-card,
+  .tracking-order-card {
+    border-radius: 26px;
+  }
+
+  .tracking-map-card {
+    min-height: 360px;
+  }
+
+  .tracking-map-overlay {
+    left: 18px;
+    right: 18px;
+    width: auto;
+  }
+
+  .tracking-driver-card {
+    grid-template-columns: 1fr;
+  }
+}

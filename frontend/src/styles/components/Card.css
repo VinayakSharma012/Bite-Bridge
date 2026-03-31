@@ -1,0 +1,548 @@
+/* ============================================
+   CARD COMPONENT STYLES
+   ============================================ */
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 26, 110, 0.06);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition-base), 
+              box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  padding: var(--space-5);
+  border-bottom: 1px solid rgba(255, 26, 110, 0.06);
+}
+
+.card-body {
+  padding: var(--space-5);
+}
+
+.card-footer {
+  padding: var(--space-5);
+  border-top: 1px solid rgba(255, 26, 110, 0.06);
+  background: var(--pink-50);
+}
+
+/* ── Card Variants ── */
+
+/* Elevated Card */
+.card-elevated {
+  border: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* Flat Card */
+.card-flat {
+  border: 1px solid var(--gray-200);
+  box-shadow: none;
+}
+
+.card-flat:hover {
+  border-color: var(--pink-300);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outlined Card */
+.card-outlined {
+  border: 2px solid var(--pink-500);
+  background: var(--pink-50);
+  box-shadow: none;
+}
+
+.card-outlined:hover {
+  background: var(--pink-100);
+  box-shadow: var(--shadow-md);
+}
+
+/* Interactive Card (clickable) */
+.card-interactive {
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.card-interactive:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-interactive:active {
+  transform: translateY(-2px);
+}
+
+/* ── Size Variants ── */
+
+.card-sm {
+  border-radius: var(--radius-lg);
+}
+
+.card-sm .card-header,
+.card-sm .card-body,
+.card-sm .card-footer {
+  padding: var(--space-3);
+}
+
+.card-lg {
+  border-radius: var(--radius-3xl);
+}
+
+.card-lg .card-header,
+.card-lg .card-body,
+.card-lg .card-footer {
+  padding: var(--space-8);
+}
+
+/* ── Special Cards ── */
+
+/* Restaurant Card */
+.restaurant-card {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.restaurant-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--gray-100);
+}
+
+.restaurant-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.restaurant-card:hover .restaurant-card-image img {
+  transform: scale(1.08);
+}
+
+.restaurant-card-badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pink-500);
+  box-shadow: var(--shadow-md);
+}
+
+.restaurant-card-content {
+  padding: var(--space-4);
+}
+
+.restaurant-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--space-3);
+}
+
+.restaurant-card-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.restaurant-card-bookmark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pink-50);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--gray-400);
+}
+
+.restaurant-card-bookmark:hover,
+.restaurant-card-bookmark.active {
+  color: var(--pink-500);
+  background: var(--pink-100);
+}
+
+.restaurant-card-meta {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+.restaurant-card-cuisine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.cuisine-tag {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-2);
+  background: var(--pink-50);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  color: var(--pink-600);
+  font-weight: 500;
+}
+
+.restaurant-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--gray-100);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.rating-star {
+  color: #FFB800;
+  font-size: 16px;
+}
+
+.delivery-info {
+  text-align: right;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.delivery-time {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+/* Menu Item Card */
+.menu-card {
+  display: flex;
+  gap: var(--space-4);
+  cursor: pointer;
+}
+
+.menu-card-image {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--gray-100);
+}
+
+.menu-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.menu-card:hover .menu-card-image img {
+  transform: scale(1.1);
+}
+
+.menu-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.menu-card-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.menu-card-description {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.4;
+}
+
+.menu-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.menu-card-price {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--pink-600);
+  font-size: 15px;
+}
+
+.menu-card-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+/* Address Card */
+.address-card {
+  position: relative;
+  padding: var(--space-4);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.address-card:hover {
+  border-color: var(--pink-300);
+  background: var(--pink-50);
+}
+
+.address-card.selected {
+  border-color: var(--pink-500);
+  background: var(--pink-50);
+  box-shadow: 0 0 0 4px rgba(255, 26, 110, 0.1);
+}
+
+.address-card-radio {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.address-card.selected .address-card-radio {
+  border-color: var(--pink-500);
+  background: var(--pink-500);
+}
+
+.address-card-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.address-card.selected .address-card-radio::after {
+  opacity: 1;
+}
+
+.address-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pink-600);
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+}
+
+.address-card-name {
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: var(--space-1);
+}
+
+.address-card-details {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Order Card */
+.order-card {
+  padding: var(--space-4);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.order-id {
+  font-weight: 600;
+  color: var(--gray-900);
+  font-family: var(--font-mono);
+}
+
+.order-date {
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+.order-status {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.order-status.pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.order-status.confirmed {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.order-status.delivered {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.order-status.cancelled {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.order-items {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  margin-bottom: var(--space-3);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  font-size: 13px;
+}
+
+.order-item-name {
+  color: var(--gray-700);
+}
+
+.order-item-qty {
+  color: var(--gray-500);
+  margin: 0 var(--space-2);
+}
+
+.order-item-price {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.order-total-price {
+  font-family: var(--font-mono);
+  color: var(--pink-600);
+}
+
+/* Analytics Card */
+.analytics-card {
+  padding: var(--space-5);
+  background: linear-gradient(135deg, var(--white) 0%, var(--pink-50) 100%);
+}
+
+.analytics-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.5px;
+}
+
+.analytics-value {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+}
+
+.analytics-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.analytics-change.positive {
+  color: var(--success);
+}
+
+.analytics-change.negative {
+  color: var(--error);
+}
+
+.analytics-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.analytics-icon.pink {
+  background: linear-gradient(135deg, var(--pink-400) 0%, var(--pink-600) 100%);
+  color: white;
+}
+
+.analytics-icon.green {
+  background: linear-gradient(135deg, var(--success) 0%, #00a872 100%);
+  color: white;
+}
+
+.analytics-icon.blue {
+  background: linear-gradient(135deg, var(--info) 0%, #2986e2 100%);
+  color: white;
+}
+
+.analytics-icon.orange {
+  background: linear-gradient(135deg, var(--warning) 0%, #ff9800 100%);
+  color: white;
+}
