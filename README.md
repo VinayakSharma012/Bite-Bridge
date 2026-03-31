@@ -10,7 +10,6 @@ API runs under `/api/*`, and frontend is served from `/` in the same service.
 
 ## What was prepared
 
-- Single-service deployment config: `render.yaml`
 - Fullstack Docker build: `backend/Dockerfile`
   - Builds frontend
   - Bundles frontend `dist` into Spring Boot `static`
@@ -43,11 +42,13 @@ Backend API: `http://localhost:8080/api`
 
 Render pulls from GitHub repo.
 
-### 2) Create Blueprint on Render
+### 2) Create Web Service on Render
 
-- In Render dashboard: **New +** → **Blueprint**
-- Select this repo (contains `render.yaml`)
-- Render will create `bitebridge-fullstack`
+- In Render dashboard: **New +** → **Web Service**
+- Select this GitHub repo
+- Environment: `Docker`
+- Dockerfile path: `backend/Dockerfile`
+- Name: `bitebridge-fullstack` (or any name you prefer)
 
 ### 3) Set required secrets in Render
 
@@ -55,12 +56,10 @@ In service environment variables, set:
 
 - `SPRING_DATA_MONGODB_URI` (required)
 - `JWT_SECRET` (required)
-
-Already configured defaults in `render.yaml`:
-
 - `SPRING_PROFILES_ACTIVE=prod`
-- `APP_SEED_ENABLED=true`
+- `SPRING_DATA_MONGODB_DATABASE=bitebridge`
 - `APP_CORS_ALLOWED_ORIGIN_PATTERNS=https://*.onrender.com`
+- `APP_SEED_ENABLED=true` (first deploy only)
 
 ### 4) Deploy
 
