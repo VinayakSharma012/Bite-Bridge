@@ -19,4 +19,4 @@ COPY --from=backend-build /app/target/*.jar app.jar
 RUN chown -R app:app /app
 USER app
 EXPOSE 10000
-ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-Dserver.port=${PORT:-10000}", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
