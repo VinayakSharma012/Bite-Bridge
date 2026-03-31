@@ -1,25 +1,17 @@
-# BiteBridge (Single Deploy: Frontend + Backend on Render)
+# BiteBridge (Single Render Web Service, Non-Docker)
 
-This project is now configured for **one Render web service** that serves:
+This repo is configured for a single Render web service using script-based deploy (no Docker).
 
-- React frontend (Vite build)
-- Spring Boot backend API
-- MongoDB-backed data
+The service builds frontend assets, copies them into Spring Boot static resources, then runs the backend jar.
 
-API runs under `/api/*`, and frontend is served from `/` in the same service.
+## Deployment mode
 
-## What was prepared
+- Build script: `render-build.sh`
+- Start script: `render-start.sh`
+- Frontend served from `/`
+- Backend API served from `/api/*`
 
-- Fullstack Docker build: `backend/Dockerfile`
-  - Builds frontend
-  - Bundles frontend `dist` into Spring Boot `static`
-  - Runs one backend container
-- API routing prefix config: `backend/src/main/java/com/bitebridge/config/ApiPathConfig.java`
-- SPA route fallback: `backend/src/main/java/com/bitebridge/config/SpaForwardController.java`
-- Frontend API base default updated to same-origin: `frontend/src/services/api.js` (`/api`)
-- Realistic seed dataset enabled in backend startup (12 restaurants + menus + coupons)
-
-## Local run (dev)
+## Local development
 
 ### Backend
 
@@ -33,43 +25,27 @@ mvn -f backend/pom.xml spring-boot:run
 npm --prefix frontend run dev -- --host
 ```
 
-Frontend: `http://localhost:5173`  
-Backend API: `http://localhost:8080/api`
+## Render setup (Web Service)
 
-## Render deployment (single service)
+- Root Directory: `.`
+- Build Command: `bash render-build.sh`
+- Start Command: `bash render-start.sh`
+- Health Check Path: `/actuator/health/liveness`
 
-### 1) Push repo to GitHub
+Set environment variables:
 
-Render pulls from GitHub repo.
-
-### 2) Create Web Service on Render
-
-- In Render dashboard: **New +** → **Web Service**
-- Select this GitHub repo
-- Environment: `Docker`
-- Dockerfile path: `backend/Dockerfile`
-- Name: `bitebridge-fullstack` (or any name you prefer)
-
-### 3) Set required secrets in Render
-
-In service environment variables, set:
-
-- `SPRING_DATA_MONGODB_URI` (required)
-- `JWT_SECRET` (required)
 - `SPRING_PROFILES_ACTIVE=prod`
+- `SPRING_DATA_MONGODB_URI=<atlas-uri>`
 - `SPRING_DATA_MONGODB_DATABASE=bitebridge`
-- `APP_CORS_ALLOWED_ORIGIN_PATTERNS=https://*.onrender.com`
-- `APP_SEED_ENABLED=true` (first deploy only)
+- `JWT_SECRET=<strong-random-secret>`
+- `APP_CORS_ALLOWED_ORIGIN_PATTERNS=https://bite-bridge.onrender.com,https://*.onrender.com`
+- `APP_SEED_ENABLED=false`
 
-### 4) Deploy
+Optional Mongo tuning vars:
 
-Render builds using `backend/Dockerfile` and starts a single container.
-
-- App URL: `https://<your-service>.onrender.com`
-- Health check: `/actuator/health`
-- API base: `/api`
-
-## Notes
-
-- If you already have old data, seeder may skip regeneration depending on data count.
-- For production, set a strong `JWT_SECRET` and your own MongoDB Atlas URI.
+- `APP_MONGODB_SERVER_SELECTION_TIMEOUT_MS=10000`
+- `APP_MONGODB_CONNECT_TIMEOUT_MS=10000`
+- `APP_MONGODB_READ_TIMEOUT_MS=20000`
+- `APP_MONGODB_MAX_CONNECTION_POOL_SIZE=50`
+- `APP_MONGODB_MIN_CONNECTION_POOL_SIZE=5`
+- `APP_MONGODB_MAX_CONNECTION_IDLE_TIME_MS=60000`
