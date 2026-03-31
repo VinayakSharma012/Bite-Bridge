@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Component
-@ConditionalOnProperty(name = "app.seed.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "app.seed.enabled", havingValue = "true", matchIfMissing = false)
 public class SampleDataSeeder implements CommandLineRunner {
 
     private static final Logger logger = Logger.getLogger(SampleDataSeeder.class.getName());
