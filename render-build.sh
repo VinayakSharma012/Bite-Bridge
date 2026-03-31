@@ -10,7 +10,18 @@ mkdir -p "${TOOLS_DIR}"
 if ! command -v java >/dev/null 2>&1; then
 	echo "[render-build] Java not found. Bootstrapping JDK 17..."
 	if [ ! -x "${JDK_DIR}/bin/java" ]; then
-		curl -fsSL "https://github.com/adoptium/temurin17-binaries/releases/latest/download/OpenJDK17U-jdk_x64_linux_hotspot.tar.gz" -o /tmp/jdk17.tar.gz
+		JDK_URL_PRIMARY="https://api.adoptium.net/v3/binary/latest/17/ga/linux/x64/jdk/hotspot/normal/eclipse"
+		JDK_URL_FALLBACK_1="https://api.adoptium.net/v3/binary/latest/17/ga/linux/x64/jdk/hotspot/normal/adoptium"
+		JDK_URL_FALLBACK_2="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz"
+
+		if ! curl -fsSL "${JDK_URL_PRIMARY}" -o /tmp/jdk17.tar.gz; then
+			echo "[render-build] Primary JDK URL failed, trying fallback #1..."
+			if ! curl -fsSL "${JDK_URL_FALLBACK_1}" -o /tmp/jdk17.tar.gz; then
+				echo "[render-build] Fallback #1 failed, trying fallback #2..."
+				curl -fsSL "${JDK_URL_FALLBACK_2}" -o /tmp/jdk17.tar.gz
+			fi
+		fi
+
 		rm -rf "${JDK_DIR}"
 		mkdir -p "${JDK_DIR}"
 		tar -xzf /tmp/jdk17.tar.gz --strip-components=1 -C "${JDK_DIR}"
