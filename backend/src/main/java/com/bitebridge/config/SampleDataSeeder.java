@@ -29,28 +29,32 @@ public class SampleDataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        long restaurantCount = mongoTemplate.collectionExists("restaurants")
-                ? mongoTemplate.getCollection("restaurants").countDocuments()
-                : 0;
-        long menuCount = mongoTemplate.collectionExists("menu_items")
-                ? mongoTemplate.getCollection("menu_items").countDocuments()
-                : 0;
+        try {
+            long restaurantCount = mongoTemplate.collectionExists("restaurants")
+                    ? mongoTemplate.getCollection("restaurants").countDocuments()
+                    : 0;
+            long menuCount = mongoTemplate.collectionExists("menu_items")
+                    ? mongoTemplate.getCollection("menu_items").countDocuments()
+                    : 0;
 
-        if (restaurantCount >= 10 && menuCount >= 50) {
-            logger.info("Sample data seeding skipped: enough restaurant/menu data already present.");
-            return;
+            if (restaurantCount >= 10 && menuCount >= 50) {
+                logger.info("Sample data seeding skipped: enough restaurant/menu data already present.");
+                return;
+            }
+
+            LocalDateTime now = LocalDateTime.now();
+
+            seedUsers(now);
+            List<Document> restaurants = seedRestaurants(now);
+            seedMenus(restaurants, now);
+            seedCoupons(restaurants, now);
+
+            logger.info("Seed complete: 12 restaurants with menu and coupon data are now available.");
+            logger.info("Demo login -> customer: rahul@bitebridge.com / Pass@123");
+            logger.info("Demo login -> admin: admin@bitebridge.com / Pass@123");
+        } catch (Exception ex) {
+            logger.warning("Sample data seeding failed, continuing app startup: " + ex.getMessage());
         }
-
-        LocalDateTime now = LocalDateTime.now();
-
-        seedUsers(now);
-        List<Document> restaurants = seedRestaurants(now);
-        seedMenus(restaurants, now);
-        seedCoupons(restaurants, now);
-
-        logger.info("Seed complete: 12 restaurants with menu and coupon data are now available.");
-        logger.info("Demo login -> customer: rahul@bitebridge.com / Pass@123");
-        logger.info("Demo login -> admin: admin@bitebridge.com / Pass@123");
     }
 
     private void seedUsers(LocalDateTime now) {
