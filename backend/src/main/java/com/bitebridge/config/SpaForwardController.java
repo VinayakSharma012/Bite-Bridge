@@ -11,7 +11,14 @@ import org.springframework.web.server.ResponseStatusException;
 @Controller
 public class SpaForwardController {
 
-    private static final Set<String> NON_SPA_ROOTS = Set.of("api", "actuator", "swagger-ui", "v3", "api-docs");
+    private static final Set<String> NON_SPA_ROOTS = Set.of(
+        "api",
+        "actuator",
+        "swagger-ui",
+        "v3",
+        "api-docs",
+        "assets"
+    );
 
     @GetMapping(value = {
             "/",
