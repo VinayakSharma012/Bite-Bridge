@@ -1,9 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TOOLS_DIR="${ROOT_DIR}/.render-tools"
+JDK_DIR="${TOOLS_DIR}/jdk-17"
+
+mkdir -p "${TOOLS_DIR}"
+
+if ! command -v java >/dev/null 2>&1; then
+	echo "[render-build] Java not found. Bootstrapping JDK 17..."
+	if [ ! -x "${JDK_DIR}/bin/java" ]; then
+		curl -fsSL "https://github.com/adoptium/temurin17-binaries/releases/latest/download/OpenJDK17U-jdk_x64_linux_hotspot.tar.gz" -o /tmp/jdk17.tar.gz
+		rm -rf "${JDK_DIR}"
+		mkdir -p "${JDK_DIR}"
+		tar -xzf /tmp/jdk17.tar.gz --strip-components=1 -C "${JDK_DIR}"
+	fi
+	export JAVA_HOME="${JDK_DIR}"
+	export PATH="${JAVA_HOME}/bin:${PATH}"
+fi
+
 if ! command -v java >/dev/null 2>&1; then
 	echo "[render-build] ERROR: Java is not available in this Render runtime."
-	echo "[render-build] Use Render Native runtime with Java environment, then retry."
+	echo "[render-build] Java bootstrap failed."
 	exit 1
 fi
 
