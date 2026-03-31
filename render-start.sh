@@ -33,4 +33,8 @@ if ! command -v java >/dev/null 2>&1; then
 fi
 
 cd backend
-exec java -Dserver.port="${PORT:-8080}" -jar target/*.jar
+exec java \
+	-Dserver.port="${PORT:-8080}" \
+	-Djdk.tls.client.protocols=TLSv1.2 \
+	-Dhttps.protocols=TLSv1.2 \
+	-jar target/*.jar
