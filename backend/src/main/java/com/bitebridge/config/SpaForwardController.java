@@ -1,35 +1,18 @@
 package com.bitebridge.config;
 
-import java.util.Set;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class SpaForwardController {
 
-    private static final Set<String> NON_SPA_ROOTS = Set.of(
-        "api",
-        "actuator",
-        "swagger-ui",
-        "v3",
-        "api-docs",
-        "assets"
-    );
-
     @GetMapping(value = {
             "/",
-            "/{path:[^\\.]*}",
-            "/{path:[^\\.]*}/{*remaining}"
+            "/{path:^(?!api$|actuator$|swagger-ui$|v3$|api-docs$|assets$)[^\\.]*}",
+            "/{path:^(?!api$|actuator$|swagger-ui$|v3$|api-docs$|assets$)[^\\.]*}/{subpath:[^\\.]*}",
+            "/{path:^(?!api$|actuator$|swagger-ui$|v3$|api-docs$|assets$)[^\\.]*}/{subpath:[^\\.]*}/{leaf:[^\\.]*}"
     })
-    public String forwardToIndex(@PathVariable(name = "path", required = false) String path) {
-        if (path != null && NON_SPA_ROOTS.contains(path)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
+    public String forwardToIndex() {
         return "forward:/index.html";
     }
 }
