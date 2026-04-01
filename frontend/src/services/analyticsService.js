@@ -5,7 +5,7 @@ export const analyticsService = {
   getDashboardAnalytics: async () => {
     try {
       const response = await apiClient.get('/analytics/dashboard');
-      return response.data.data;
+      return response.data.data || {};
     } catch (error) {
       console.error('Error fetching dashboard analytics:', error);
       throw error.response?.data || error;

@@ -63,10 +63,19 @@ function ManageCoupons() {
     e.preventDefault();
     setError('');
     try {
+      // Convert string numbers to actual numbers
+      const couponData = {
+        ...form,
+        discount: parseFloat(form.discount) || 0,
+        minOrderAmount: parseFloat(form.minOrderAmount) || 0,
+        maxDiscount: parseFloat(form.maxDiscount) || 0,
+        usageLimit: parseInt(form.usageLimit) || 0,
+      };
+
       if (editingId) {
-        await couponService.updateCoupon(editingId, form);
+        await couponService.updateCoupon(editingId, couponData);
       } else {
-        await couponService.createCoupon(form);
+        await couponService.createCoupon(couponData);
       }
       const data = await couponService.getAllCoupons();
       setCoupons(data || []);

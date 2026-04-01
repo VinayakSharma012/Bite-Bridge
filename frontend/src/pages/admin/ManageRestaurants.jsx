@@ -77,11 +77,30 @@ function ManageRestaurants() {
   const handleCreate = async (e) => {
     e.preventDefault();
     setError('');
+    
+    // Validate required fields
+    if (!form.name?.trim()) {
+      setError('Restaurant name is required');
+      return;
+    }
+    if (!form.address?.trim()) {
+      setError('Address is required');
+      return;
+    }
+    if (!form.city?.trim()) {
+      setError('City is required');
+      return;
+    }
+
     try {
-      await restaurantService.createRestaurant({
+      const restaurantData = {
         ...form,
-        cuisines: form.cuisines.split(',').map((item) => item.trim()).filter(Boolean),
-      });
+        cuisineTypes: form.cuisines.split(',').map((item) => item.trim()).filter(Boolean),
+        avgDeliveryTime: parseInt(form.deliveryTime) || 30,
+        minOrderAmount: parseFloat(form.avgPrice) || 0,
+      };
+      
+      await restaurantService.createRestaurant(restaurantData);
       const data = await restaurantService.getAllRestaurants();
       setRestaurants(data || []);
       setShowDrawer(false);
@@ -89,6 +108,7 @@ function ManageRestaurants() {
       setForm(defaultForm);
     } catch (err) {
       setError(`Unable to create restaurant: ${err.message || 'Unknown error'}`);
+      console.error('Restaurant creation error:', err);
     }
   };
 
