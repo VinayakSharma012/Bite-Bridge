@@ -102,7 +102,7 @@ export const userService = {
   // Get all users (admin)
   getAllUsers: async (filters = {}) => {
     try {
-      const response = await apiClient.get('/users/admin/all', { params: filters });
+      const response = await apiClient.get('/users', { params: filters });
       return response.data.data || [];
     } catch (error) {
       console.error('Error fetching users:', error);

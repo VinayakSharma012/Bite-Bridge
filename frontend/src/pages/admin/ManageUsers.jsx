@@ -40,10 +40,12 @@ function ManageUsers() {
     const load = async () => {
       try {
         setLoading(true);
+        setError('');
         const data = await userService.getAllUsers();
         setUsers(data || []);
-      } catch {
-        setError('Failed to load users.');
+      } catch (err) {
+        console.error('Failed to load users:', err);
+        setError(`Failed to load users: ${err?.message || 'Unknown error'}`);
       } finally {
         setLoading(false);
       }
