@@ -63,13 +63,15 @@ function ManageCoupons() {
     e.preventDefault();
     setError('');
     try {
-      // Convert string numbers to actual numbers
+      // Convert string numbers to actual numbers and format dates to ISO 8601
       const couponData = {
         ...form,
         discount: parseFloat(form.discount) || 0,
         minOrderAmount: parseFloat(form.minOrderAmount) || 0,
         maxDiscount: parseFloat(form.maxDiscount) || 0,
         usageLimit: parseInt(form.usageLimit) || 0,
+        validFrom: form.validFrom ? new Date(form.validFrom + 'T00:00:00').toISOString() : new Date().toISOString(),
+        validTo: form.validTo ? new Date(form.validTo + 'T00:00:00').toISOString() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
       };
 
       if (editingId) {
@@ -140,19 +142,28 @@ function ManageCoupons() {
                 </button>
               </div>
               <h3>
-                {coupon.discount}
+                {coupon.discountValue}
                 {coupon.discountType === 'PERCENTAGE' ? '%' : '₹'} OFF
               </h3>
               <p className="coupon-validity">
                 <CalendarDays size={14} />
-                {new Date(coupon.validFrom).toLocaleDateString()} - {new Date(coupon.validTo).toLocaleDateString()}
+                {new Date(coupon.validFrom).toLocaleDateString()} - {new Date(coupon.validUntil).toLocaleDateString()}
               </p>
               <div className="coupon-actions-row">
                 <button
                   type="button"
                   onClick={() => {
                     setEditingId(coupon.id);
-                    setForm({ ...coupon });
+                    setForm({
+                      code: coupon.code,
+                      discount: coupon.discountValue,
+                      discountType: coupon.discountType,
+                      minOrderAmount: coupon.minOrderAmount,
+                      maxDiscount: coupon.maxDiscountAmount,
+                      validFrom: coupon.validFrom ? new Date(coupon.validFrom).toISOString().slice(0, 10) : '',
+                      validTo: coupon.validUntil ? new Date(coupon.validUntil).toISOString().slice(0, 10) : '',
+                      usageLimit: coupon.usageLimit,
+                    });
                     setShowModal(true);
                   }}
                 >

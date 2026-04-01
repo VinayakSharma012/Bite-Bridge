@@ -42,14 +42,15 @@ export const couponService = {
     try {
       const response = await apiClient.post('/coupons', {
         code: couponData.code,
-        discount: couponData.discount,
+        discountValue: couponData.discount,
         discountType: couponData.discountType, // PERCENTAGE or FIXED
         minOrderAmount: couponData.minOrderAmount,
-        maxDiscount: couponData.maxDiscount,
+        maxDiscountAmount: couponData.maxDiscount,
         validFrom: couponData.validFrom,
-        validTo: couponData.validTo,
+        validUntil: couponData.validTo,
         usageLimit: couponData.usageLimit,
-        usageCount: 0,
+        usedCount: 0,
+        active: true,
       });
       return response.data.data;
     } catch (error) {
@@ -61,7 +62,19 @@ export const couponService = {
   // Update coupon (admin)
   updateCoupon: async (couponId, couponData) => {
     try {
-      const response = await apiClient.put(`/coupons/${couponId}`, couponData);
+      const mappedData = {
+        code: couponData.code,
+        discountValue: couponData.discount !== undefined ? couponData.discount : couponData.discountValue,
+        discountType: couponData.discountType,
+        minOrderAmount: couponData.minOrderAmount,
+        maxDiscountAmount: couponData.maxDiscount !== undefined ? couponData.maxDiscount : couponData.maxDiscountAmount,
+        validFrom: couponData.validFrom,
+        validUntil: couponData.validTo || couponData.validUntil,
+        usageLimit: couponData.usageLimit,
+        usedCount: couponData.usedCount !== undefined ? couponData.usedCount : 0,
+        active: couponData.active !== undefined ? couponData.active : true,
+      };
+      const response = await apiClient.put(`/coupons/${couponId}`, mappedData);
       return response.data.data;
     } catch (error) {
       console.error('Error updating coupon:', error);
