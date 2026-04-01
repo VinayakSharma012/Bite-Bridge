@@ -99,7 +99,7 @@ function AdminDashboard() {
       {
         key: 'delivery',
         label: 'Delivery SLA',
-        value: `${Math.round(analytics?.deliveryRate ?? 94)}%`,
+        value: `${Math.round(analytics?.deliverySLA ?? 94)}%`,
         trend: -1.8,
         icon: Truck,
         tone: 'amber',

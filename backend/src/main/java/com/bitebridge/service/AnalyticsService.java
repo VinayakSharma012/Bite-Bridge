@@ -290,7 +290,37 @@ public class AnalyticsService {
                 .map(o -> {
                     Map<String, Object> map = new HashMap<>();
                     map.put("id", o.getId());
+                    map.put("_id", o.getId());
                     map.put("orderNumber", o.getOrderNumber());
+                    
+                    // Get customer name
+                    String customerName = "Guest User";
+                    try {
+                        if (o.getCustomerId() != null) {
+                            User customer = userRepository.findById(o.getCustomerId()).orElse(null);
+                            if (customer != null && customer.getName() != null) {
+                                customerName = customer.getName();
+                            }
+                        }
+                    } catch (Exception e) {
+                        logger.warning("Could not fetch customer name for order: " + o.getId());
+                    }
+                    
+                    // Get restaurant name
+                    String restaurantName = "BiteBridge Partner";
+                    try {
+                        if (o.getRestaurantId() != null) {
+                            Restaurant restaurant = restaurantRepository.findById(o.getRestaurantId()).orElse(null);
+                            if (restaurant != null && restaurant.getName() != null) {
+                                restaurantName = restaurant.getName();
+                            }
+                        }
+                    } catch (Exception e) {
+                        logger.warning("Could not fetch restaurant name for order: " + o.getId());
+                    }
+                    
+                    map.put("customerName", customerName);
+                    map.put("restaurantName", restaurantName);
                     map.put("totalAmount", o.getTotalAmount());
                     map.put("status", o.getStatus());
                     map.put("createdAt", o.getCreatedAt());
