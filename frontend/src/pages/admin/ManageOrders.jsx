@@ -103,6 +103,7 @@ function ManageOrders() {
 
   const updateStatus = async (status) => {
     if (!selectedOrder) return;
+    setError('');
     try {
       await orderService.updateOrderStatus(selectedOrder.id || selectedOrder._id, status);
       setOrders((prev) =>
@@ -111,8 +112,8 @@ function ManageOrders() {
         )
       );
       setSelectedOrder((prev) => ({ ...prev, status }));
-    } catch {
-      setError('Failed to update order status.');
+    } catch (err) {
+      setError(`Failed to update order status: ${err.message || 'Unknown error'}`);
     }
   };
 
@@ -231,11 +232,23 @@ function ManageOrders() {
                   className={status === selectedOrder.status ? 'active' : ''}
                   onClick={() => updateStatus(status)}
                   key={status}
+                  disabled={['DELIVERED', 'CANCELLED'].includes(selectedOrder.status)}
                 >
                   {status.replace(/_/g, ' ')}
                 </button>
               ))}
             </div>
+
+            {!['DELIVERED', 'CANCELLED'].includes(selectedOrder.status) && (
+              <button
+                type="button"
+                className="danger"
+                onClick={() => updateStatus('CANCELLED')}
+                style={{ marginTop: '1rem', width: '100%' }}
+              >
+                Cancel Order
+              </button>
+            )}
           </div>
         )}
       </aside>

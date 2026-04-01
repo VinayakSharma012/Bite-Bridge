@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from './pages/Home';
+import Restaurants from './pages/Restaurants';
+import RestaurantDetail from './pages/RestaurantDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 // Lazy load pages to improve performance
-const Restaurants = React.lazy(() => import('./pages/Restaurants'));
-const RestaurantDetail = React.lazy(() => import('./pages/RestaurantDetail'));
-const Cart = React.lazy(() => import('./pages/Cart'));
-const Checkout = React.lazy(() => import('./pages/Checkout'));
-const Login = React.lazy(() => import('./pages/Login'));
-const Register = React.lazy(() => import('./pages/Register'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const OrderTracking = React.lazy(() => import('./pages/OrderTracking'));
 const Notifications = React.lazy(() => import('./pages/Notifications'));
@@ -47,36 +47,12 @@ function AnimatedAppRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
-          <Route path="/restaurants" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <Restaurants />
-            </React.Suspense>
-          } />
-          <Route path="/restaurant/:id" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <RestaurantDetail />
-            </React.Suspense>
-          } />
-          <Route path="/cart" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <Cart />
-            </React.Suspense>
-          } />
-          <Route path="/checkout" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <Checkout />
-            </React.Suspense>
-          } />
-          <Route path="/login" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <Login />
-            </React.Suspense>
-          } />
-          <Route path="/register" element={
-            <React.Suspense fallback={<LoadingFallback />}>
-              <Register />
-            </React.Suspense>
-          } />
+          <Route path="/restaurants" element={<Restaurants />} />
+          <Route path="/restaurant/:id" element={<RestaurantDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/profile" element={
             <React.Suspense fallback={<LoadingFallback />}>
               <Profile />

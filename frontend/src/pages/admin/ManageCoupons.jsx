@@ -10,11 +10,11 @@ const defaultForm = {
   code: '',
   discount: '',
   discountType: 'PERCENTAGE',
-  minOrderAmount: '',
-  maxDiscount: '',
-  validFrom: '',
-  validTo: '',
-  usageLimit: '',
+  minOrderAmount: 0,
+  maxDiscount: 0,
+  validFrom: new Date().toISOString().slice(0, 10),
+  validTo: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+  usageLimit: 100,
 };
 
 function ManageCoupons() {
@@ -61,6 +61,7 @@ function ManageCoupons() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       if (editingId) {
         await couponService.updateCoupon(editingId, form);
@@ -72,8 +73,9 @@ function ManageCoupons() {
       setShowModal(false);
       setEditingId('');
       setForm(defaultForm);
-    } catch {
-      setError('Failed to save coupon.');
+    } catch (err) {
+      setError(`Failed to save coupon: ${err.message || 'Unknown error'}`);
+      console.error('Coupon save error:', err);
     }
   };
 
@@ -84,11 +86,12 @@ function ManageCoupons() {
   };
 
   const onDelete = async (id) => {
+    setError('');
     try {
       await couponService.deleteCoupon(id);
       setCoupons((prev) => prev.filter((item) => item.id !== id));
-    } catch {
-      setError('Failed to delete coupon.');
+    } catch (err) {
+      setError(`Failed to delete coupon: ${err.message || 'Unknown error'}`);
     }
   };
 
@@ -165,8 +168,8 @@ function ManageCoupons() {
 
             <div className="coupon-modal-grid">
               <form className="coupon-form" onSubmit={handleSubmit}>
-                <label>Code<input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })} required /></label>
-                <label>Discount<input type="number" value={form.discount} onChange={(e) => setForm({ ...form, discount: e.target.value })} required /></label>
+                <label>Code<input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })} placeholder="e.g., SAVE20" required /></label>
+                <label>Discount<input type="number" value={form.discount} onChange={(e) => setForm({ ...form, discount: e.target.value })} placeholder="20" min="0" required /></label>
                 <label>Type
                   <select value={form.discountType} onChange={(e) => setForm({ ...form, discountType: e.target.value })}>
                     <option value="PERCENTAGE">Percentage</option>
@@ -175,9 +178,9 @@ function ManageCoupons() {
                 </label>
                 <label>Valid From<input type="date" value={form.validFrom} onChange={(e) => setForm({ ...form, validFrom: e.target.value })} required /></label>
                 <label>Valid To<input type="date" value={form.validTo} onChange={(e) => setForm({ ...form, validTo: e.target.value })} required /></label>
-                <label>Min Order<input type="number" value={form.minOrderAmount} onChange={(e) => setForm({ ...form, minOrderAmount: e.target.value })} /></label>
-                <label>Max Discount<input type="number" value={form.maxDiscount} onChange={(e) => setForm({ ...form, maxDiscount: e.target.value })} /></label>
-                <label>Usage Limit<input type="number" value={form.usageLimit} onChange={(e) => setForm({ ...form, usageLimit: e.target.value })} /></label>
+                <label>Min Order<input type="number" value={form.minOrderAmount} onChange={(e) => setForm({ ...form, minOrderAmount: e.target.value })} placeholder="0" min="0" /></label>
+                <label>Max Discount<input type="number" value={form.maxDiscount} onChange={(e) => setForm({ ...form, maxDiscount: e.target.value })} placeholder="500" min="0" /></label>
+                <label>Usage Limit<input type="number" value={form.usageLimit} onChange={(e) => setForm({ ...form, usageLimit: e.target.value })} placeholder="100" min="1" /></label>
                 <button type="submit" className="admin-gradient-btn">{editingId ? 'Update' : 'Create'}</button>
               </form>
 

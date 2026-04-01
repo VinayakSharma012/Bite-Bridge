@@ -65,16 +65,18 @@ function ManageRestaurants() {
 
   const updateToggle = async (restaurant) => {
     const newStatus = !restaurant.isOpen;
+    setError('');
     setRestaurants((prev) => prev.map((item) => (item.id === restaurant.id ? { ...item, isOpen: newStatus } : item)));
     try {
       await restaurantService.updateRestaurant(restaurant.id, { ...restaurant, isOpen: newStatus });
-    } catch {
-      setError('Failed to update restaurant status.');
+    } catch (err) {
+      setError(`Failed to update restaurant status: ${err.message || 'Unknown error'}`);
     }
   };
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       await restaurantService.createRestaurant({
         ...form,
@@ -85,19 +87,20 @@ function ManageRestaurants() {
       setShowDrawer(false);
       setStep(1);
       setForm(defaultForm);
-    } catch {
-      setError('Unable to create restaurant with current details.');
+    } catch (err) {
+      setError(`Unable to create restaurant: ${err.message || 'Unknown error'}`);
     }
   };
 
   const handleDelete = async () => {
     if (!deleteId) return;
+    setError('');
     try {
       await restaurantService.deleteRestaurant(deleteId);
       setRestaurants((prev) => prev.filter((item) => item.id !== deleteId));
       setDeleteId(null);
-    } catch {
-      setError('Unable to delete restaurant.');
+    } catch (err) {
+      setError(`Unable to delete restaurant: ${err.message || 'Unknown error'}`);
     }
   };
 

@@ -83,31 +83,34 @@ function ManageUsers() {
   };
 
   const updateRole = async (id, role) => {
+    setError('');
     try {
       await userService.updateUserRole(id, role);
       setUsers((prev) => prev.map((item) => (item.id === id ? { ...item, role } : item)));
-    } catch {
-      setError('Failed to update role.');
+    } catch (err) {
+      setError(`Failed to update role: ${err.message || 'Unknown error'}`);
     }
   };
 
   const deleteSelected = async () => {
+    setError('');
     try {
       await Promise.all(selectedIds.map((id) => userService.deleteUser(id)));
       setUsers((prev) => prev.filter((item) => !selectedIds.includes(item.id)));
       setSelectedIds([]);
-    } catch {
-      setError('Failed to delete selected users.');
+    } catch (err) {
+      setError(`Failed to delete selected users: ${err.message || 'Unknown error'}`);
     }
   };
 
   const deleteOne = async (id) => {
+    setError('');
     try {
       await userService.deleteUser(id);
       setUsers((prev) => prev.filter((item) => item.id !== id));
       setSelectedIds((prev) => prev.filter((item) => item !== id));
-    } catch {
-      setError('Failed to delete user.');
+    } catch (err) {
+      setError(`Failed to delete user: ${err.message || 'Unknown error'}`);
     }
   };
 
