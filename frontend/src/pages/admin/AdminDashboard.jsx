@@ -51,10 +51,12 @@ function AdminDashboard() {
     const load = async () => {
       try {
         setLoading(true);
+        setError('');
         const data = await analyticsService.getDashboardAnalytics();
         setAnalytics(data);
-      } catch {
-        setError('Unable to load dashboard insights right now.');
+      } catch (err) {
+        console.error('Dashboard analytics error:', err);
+        setError(`Unable to load dashboard insights: ${err?.message || 'Unknown error'}`);
       } finally {
         setLoading(false);
       }
