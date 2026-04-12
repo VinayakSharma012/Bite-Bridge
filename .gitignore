@@ -1,0 +1,95 @@
+.gitignore
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.zip
+*.tar.gz
+*.rar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+.classpath
+.project
+.settings/
+bin/
+var/
+.DS_Store
+target/
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+# Environment Variables (NEVER COMMIT)
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Node
+node_modules/
+dist/
+.cache/
+
+# Backend
+/backend/server.log
+/backend/*.log
+
+# Configuration
+.editorconfig
+
+# Sensitive files (backups)
+*.bak
+*.swp
+*.tmp
+
+# IDE specific
+.project
+.classpath
