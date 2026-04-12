@@ -37,4 +37,9 @@ exec java \
 	-Dserver.port="${PORT:-8080}" \
 	-Djdk.tls.client.protocols=TLSv1.2 \
 	-Dhttps.protocols=TLSv1.2 \
+	-Xmx512m \
+	-Xms256m \
+	-XX:+UseG1GC \
+	-XX:MaxGCPauseMillis=200 \
+	-Dspring.jpa.hibernate.ddl-auto=validate \
 	-jar target/*.jar
